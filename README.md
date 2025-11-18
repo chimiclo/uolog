@@ -85,3 +85,6 @@ Figma：https://www.figma.com/design/klylbX1Kl4GR3PEk6BbDQx/UOLOG%E7%94%BB%E9%9D
 直接変更できるものではなく、一旦メールなどを介して専用のページで変更する画面遷移になっているか？
 - [x] メールアドレス
 - [x] パスワード
+
+### ER図
+draw.io：https://app.diagrams.net/?src=about
