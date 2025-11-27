@@ -7,7 +7,12 @@
     <% if user_signed_in? %>
       <p>ようこそ、<%= current_user.email %> さん！</p>
 
-      <%= link_to "マイページへ", profile_path, style: "display:inline-block; padding:10px 20px; background:#4CAF50; color:white; border-radius:8px; text-decoration:none;" %>
+      <%= link_to "マイページへ", profile_path,
+        style: "display:inline-block; padding:10px 20px; background:#4CAF50; color:white; border-radius:8px; text-decoration:none;" %>
+
+      <%= link_to "ログアウト", destroy_user_session_path,
+        data: { turbo_method: :delete },
+        style: "display:inline-block; margin-top: 20px; padding:10px 20px; background:#f44336; color:white; border-radius:8px; text-decoration:none;" %>
 
     <% else %>
       <%= link_to "ログイン / 新規登録", new_user_session_path,
