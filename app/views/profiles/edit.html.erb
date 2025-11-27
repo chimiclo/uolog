@@ -1,25 +1,43 @@
-<h2>プロフィール編集</h2>
+<div style="max-width: 600px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
 
-<%= form_with model: @profile, url: profile_path, method: :patch, local: true do |f| %>
-  <div>
-    <%= f.label :name, "ニックネーム" %><br>
-    <%= f.text_field :name %>
+  <h2 style="text-align: center; margin-bottom: 30px;">マイページ編集</h2>
+
+  <%= form_with model: @profile, url: profile_path, local: true do |f| %>
+
+    <!-- 名前 -->
+    <div style="margin-bottom: 20px;">
+      <label style="font-weight: bold;">名前</label>
+      <%= f.text_field :name, class: "form-control", style: "width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;" %>
+    </div>
+
+    <!-- 釣りスタイル -->
+    <div style="margin-bottom: 20px;">
+      <label style="font-weight: bold;">釣りスタイル</label>
+      <%= f.text_field :style, class: "form-control", placeholder: "例：ルアー / エサ釣り / 渓流 / 船釣りなど", style: "width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;" %>
+    </div>
+
+    <!-- よく行くエリア -->
+    <div style="margin-bottom: 20px;">
+      <label style="font-weight: bold;">よく行くエリア</label>
+      <%= f.text_field :area, class: "form-control", placeholder: "例：横浜、館山、霞ヶ浦など", style: "width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;" %>
+    </div>
+
+    <!-- 一言コメント -->
+    <div style="margin-bottom: 25px;">
+      <label style="font-weight: bold;">コメント</label>
+      <%= f.text_area :comment, class: "form-control", rows: 4, placeholder: "釣りへの想いや自己紹介など！", style: "width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;" %>
+    </div>
+
+    <!-- 保存ボタン -->
+    <div style="text-align: center;">
+      <%= f.submit "更新する", style: "padding: 10px 30px; background:#4CAF50; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer;" %>
+    </div>
+
+  <% end %>
+
+  <!-- 戻るリンク -->
+  <div style="text-align:center; margin-top:20px;">
+    <%= link_to "戻る", profile_path, style: "color:#555;" %>
   </div>
 
-  <div>
-    <%= f.label :style, "釣りスタイル" %><br>
-    <%= f.text_field :style %>
-  </div>
-
-  <div>
-    <%= f.label :area, "よく行くエリア" %><br>
-    <%= f.text_field :area %>
-  </div>
-
-  <div>
-    <%= f.label :comment, "一言コメント" %><br>
-    <%= f.text_area :comment %>
-  </div>
-
-  <%= f.submit "更新する" %>
-<% end %>
+</div>
