@@ -3,10 +3,12 @@ class ProfilesController < ApplicationController
   before_action :set_profile
 
   def show
-    @profile = current_user.profile || current_user.create_profile!
+    @profile ||= current_user.create_profile!
   end
 
-  def edit; end
+  def edit
+    redirect_to profile_path unless @profile
+  end
 
   def update
     if @profile.update(profile_params)
@@ -23,6 +25,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :bio)
+    params.require(:profile).permit(:name, :style, :area, :comment, :bio)
   end
 end

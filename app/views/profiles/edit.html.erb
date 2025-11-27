@@ -1,14 +1,24 @@
-<h1>プロフィール編集</h1>
+<h2>プロフィール編集</h2>
 
-<%= form_with model: @profile, url: profile_path, method: :patch do |f| %>
+<%= form_with model: @profile, url: profile_path, method: :patch, local: true do |f| %>
   <div>
-    <%= f.label :name, "名前" %><br>
+    <%= f.label :name, "ニックネーム" %><br>
     <%= f.text_field :name %>
   </div>
 
   <div>
-    <%= f.label :bio, "自己紹介" %><br>
-    <%= f.text_area :bio %>
+    <%= f.label :style, "釣りスタイル" %><br>
+    <%= f.text_field :style %>
+  </div>
+
+  <div>
+    <%= f.label :area, "よく行くエリア" %><br>
+    <%= f.text_field :area %>
+  </div>
+
+  <div>
+    <%= f.label :comment, "一言コメント" %><br>
+    <%= f.text_area :comment %>
   </div>
 
   <%= f.submit "更新する" %>
