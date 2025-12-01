@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "profiles/update"
   devise_for :users
   get "home/index"
-  root 'home#index'
+  root "home#index"
 
   resource :profile, only: %i[show edit update]
   resources :catches do
