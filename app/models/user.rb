@@ -9,6 +9,6 @@ class User < ApplicationRecord
 
   def create_default_profile
     build_profile unless profile
-    profile.save!
+    profile.save!(validate: false)
   end
 end
