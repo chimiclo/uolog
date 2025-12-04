@@ -2,3 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "fontawesome"
+import "./catch_image_preview";

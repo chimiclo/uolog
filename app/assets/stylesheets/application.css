@@ -148,7 +148,7 @@
   transform: translateY(-1px);
 }
 
-form {
+form.user-auth-form {
   max-width: 720px;
   margin: 0 auto;
 }
@@ -192,4 +192,73 @@ form select:focus {
 
 .field_with_errors label {
   color: #d9534f;
+}
+
+.catch-form {
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+.catch-form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.catch-form input,
+.catch-form textarea,
+.catch-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #a3c9a8;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.catch-form input[type="file"] {
+  padding: 0;
+}
+
+.catch-form .submit-btn {
+  padding: 12px 24px;
+  background: #2e8b57;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.catch-form .submit-btn:hover {
+  background: #256f46;
+}
+.preview-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.preview-thumb {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #2e8b57;
+}
+
+.btn-uolog {
+  background: #2e8b57;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-uolog:hover {
+  background: #256f46;
 }
