@@ -1,6 +1,6 @@
 class CatchesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_catch, only: [:show]
+  before_action :set_catch, only: [ :show ]
 
   def new
     @catch = Catch.new
