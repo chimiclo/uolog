@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "catches/new"
+  get "catches/create"
   get "profiles/show"
   get "profiles/edit"
   get "profiles/update"

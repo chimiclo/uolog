@@ -1,0 +1,35 @@
+<h1>釣果を登録する</h1>
+
+<div class="catch-form">
+  <%= form_with model: @catch, local: true do |f| %>
+
+    <%= f.label :caught_on, "釣行日" %>
+    <%= f.date_field :caught_on %>
+
+    <%= f.label :condition, "天気/潮" %>
+    <%= f.text_field :condition, placeholder: "晴れ / 大潮 など" %>
+
+    <%= f.label :fish_name, "魚種" %>
+    <%= f.text_field :fish_name %>
+
+    <%= f.label :size, "サイズ（cm）" %>
+    <%= f.number_field :size %>
+
+    <%= f.label :location, "場所" %>
+    <%= f.text_field :location, placeholder: "港名・ポイント名" %>
+
+    <%= f.label :tackle, "仕掛け" %>
+    <%= f.text_field :tackle %>
+
+    <%= f.label :memo, "メモ" %>
+    <%= f.text_area :memo %>
+
+    <%= f.label :images, "画像（複数可）" %>
+    <%= f.file_field :images, multiple: true, accept: "image/*", id: "catch_images_input" %>
+
+    <div id="preview-area" class="preview-area"></div>
+
+    <%= f.submit "登録する", class: "btn-uolog" %>
+
+  <% end %>
+</div>
