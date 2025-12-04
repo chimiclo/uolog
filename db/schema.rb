@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_27_065841) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_04_044908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "catches", force: :cascade do |t|
+    t.date "caught_on"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "fish_name"
+    t.float "latitude"
+    t.integer "length"
+    t.float "longitude"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.integer "weight"
+    t.index ["user_id"], name: "index_catches_on_user_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string "area"
@@ -39,5 +53,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_27_065841) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "catches", "users"
   add_foreign_key "profiles", "users"
 end
