@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_04_055630) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_04_082527) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -44,12 +44,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_04_055630) do
 
   create_table "catches", force: :cascade do |t|
     t.date "caught_on"
+    t.string "condition"
     t.datetime "created_at", null: false
     t.text "description"
     t.string "fish_name"
     t.float "latitude"
     t.integer "length"
+    t.string "location"
     t.float "longitude"
+    t.text "memo"
+    t.integer "size"
+    t.string "tackle"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.integer "weight"

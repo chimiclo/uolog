@@ -1,0 +1,78 @@
+<div class="catch-show-container">
+
+  <div class="catch-author-box">
+    <div class="author-left">
+      <% if @catch.user.profile.avatar.attached? %>
+        <%= image_tag @catch.user.profile.avatar.variant(resize_to_fill: [60, 60]), class: "author-avatar" %>
+      <% else %>
+        <div class="author-avatar author-avatar-placeholder">👤</div>
+      <% end %>
+      <div class="author-info">
+        <p class="author-name"><%= @catch.user.profile.name %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="catch-swiper-container">
+    <div class="swiper myCatchSwiper">
+      <div class="swiper-wrapper">
+        <% if @catch.images.attached? %>
+          <% @catch.images.each do |img| %>
+            <div class="swiper-slide">
+              <%= image_tag img, class: "catch-image" %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="swiper-slide no-image-slide">
+            <p>画像がありません</p>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+
+  <div class="catch-info-card">
+
+    <div class="card-header">
+      <h2>🐟 <%= @catch.fish_name %></h2>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">日付</span>
+      <span class="info-value"><%= @catch.caught_on %></span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">サイズ</span>
+      <span class="info-value"><%= @catch.size %> cm</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">場所</span>
+      <span class="info-value"><%= @catch.location %></span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">状況</span>
+      <span class="info-value"><%= @catch.condition %></span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">タックル</span>
+      <span class="info-value"><%= @catch.tackle %></span>
+    </div>
+
+    <div class="memo-box">
+      <h3>メモ</h3>
+      <div class="memo-content"><%= simple_format(@catch.memo) %></div>
+    </div>
+  </div>
+
+  <div class="show-back-container">
+    <%= link_to "一覧へ戻る", catches_path, class: "btn-back" %>
+  </div>
+</div>

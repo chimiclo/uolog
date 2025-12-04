@@ -1,5 +1,6 @@
 class CatchesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_catch, only: [ :show ]
 
   def new
     @catch = Catch.new
@@ -16,7 +17,14 @@ class CatchesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
+
+  def set_catch
+    @catch = Catch.find(params[:id])
+  end
 
   def catch_params
     params.require(:catch).permit(
