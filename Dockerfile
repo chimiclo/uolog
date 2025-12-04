@@ -8,6 +8,7 @@ RUN apt-get update -qq && \
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
+RUN apt-get update -qq && apt-get install -y libvips libvips-dev
 RUN bundle install
 
 COPY . .

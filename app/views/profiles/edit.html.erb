@@ -4,38 +4,37 @@
 
   <%= form_with model: @profile, url: profile_path, local: true do |f| %>
 
-    <!-- 名前 -->
+    <div class="field">
+      <%= f.label :avatar, "プロフィール画像" %><br>
+      <%= f.file_field :avatar, accept: "image/*" %>
+   </div>
+
     <div style="margin-bottom: 20px;">
       <label style="font-weight: bold;">名前</label>
       <%= f.text_field :name, class: "form-control", style: "width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;" %>
     </div>
 
-    <!-- 釣りスタイル -->
     <div style="margin-bottom: 20px;">
       <label style="font-weight: bold;">釣りスタイル</label>
       <%= f.text_field :style, class: "form-control", placeholder: "例：ルアー / エサ釣り / 渓流 / 船釣りなど", style: "width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;" %>
     </div>
 
-    <!-- よく行くエリア -->
     <div style="margin-bottom: 20px;">
       <label style="font-weight: bold;">よく行くエリア</label>
       <%= f.text_field :area, class: "form-control", placeholder: "例：横浜、館山、霞ヶ浦など", style: "width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;" %>
     </div>
 
-    <!-- 一言コメント -->
     <div style="margin-bottom: 25px;">
       <label style="font-weight: bold;">コメント</label>
       <%= f.text_area :comment, class: "form-control", rows: 4, placeholder: "釣りへの想いや自己紹介など！", style: "width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;" %>
     </div>
 
-    <!-- 保存ボタン -->
     <div style="text-align: center;">
       <%= f.submit "更新する", style: "padding: 10px 30px; background:#4CAF50; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer;" %>
     </div>
 
   <% end %>
 
-  <!-- 戻るリンク -->
   <div style="text-align:center; margin-top:20px;">
     <%= link_to "戻る", profile_path, style: "color:#555;" %>
   </div>
