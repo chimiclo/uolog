@@ -1,16 +1,41 @@
 <header class="navbar">
-  <nav>
-    <ul>
-      <li><%= link_to "ホーム", root_path %></li>
-
-      <% if user_signed_in? %>
-        <li><%= link_to "マイページ", profile_path(current_user.profile) %></li>
-        <li><%= link_to "釣果を投稿", new_catch_path %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %></li>
-      <% else %>
-        <li><%= link_to "ログイン", new_user_session_path %></li>
-        <li><%= link_to "ユーザー登録", new_user_registration_path %></li>
+  <div class="container">
+    <div class="logo">
+      <%= link_to root_path do %>
+        <i class="fa-solid fa-fish"></i>
+        <span>UOLOG</span>
       <% end %>
-    </ul>
-  </nav>
+    </div>
+
+    <nav class="nav-links">
+      <ul>
+        <li><%= link_to root_path do %>
+          <i class="fa-solid fa-water"></i> ホーム
+        <% end %></li>
+
+        <% if user_signed_in? %>
+          <li><%= link_to profile_path(current_user.profile) do %>
+            <i class="fa-solid fa-user"></i> マイページ
+          <% end %></li>
+
+          <li><%= link_to new_catch_path do %>
+            <i class="fa-solid fa-book-open"></i> 釣果を投稿
+          <% end %></li>
+
+          <li><%= link_to destroy_user_session_path,
+              data: { turbo_method: :delete } do %>
+            <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+          <% end %></li>
+        <% else %>
+          <li><%= link_to new_user_session_path do %>
+            <i class="fa-solid fa-right-to-bracket"></i> ログイン
+          <% end %></li>
+
+          <li><%= link_to new_user_registration_path do %>
+            <i class="fa-solid fa-user-plus"></i> 新規登録
+          <% end %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 </header>

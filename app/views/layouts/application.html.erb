@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "App" %></title>
+    <title><%= content_for(:title) || "UOLOG" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="App">
+    <meta name="application-name" content="UOLOG">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,11 +16,11 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-
     <%= javascript_importmap_tags %>
   </head>
 
   <body style="padding-top: 70px;">
+
     <%= render "shared/navbar" %>
 
     <% if notice %>
@@ -32,5 +32,7 @@
     <% end %>
 
     <%= yield %>
+
+    <%= render "shared/footer" %>
   </body>
 </html>
