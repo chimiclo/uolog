@@ -1,33 +1,41 @@
-.catch-form {
-    max-width: 700px;
-    margin: 40px auto;
-  }
+.catch-form-container {
+  max-width: 720px;
+  margin: 20px auto 60px;
+  padding: 0 20px;
+}
 
-  .catch-form input,
-  .catch-form textarea,
-  .catch-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #a3c9a8;
-    border-radius: 6px;
-  }
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .catch-form input[type="file"] {
-    padding: 0;
-  }
+.form-label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #2e6f40;
+}
 
-  .preview-area {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-  }
+.input-field,
+.textarea-field {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
 
-  .preview-thumb {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #2e8b57;
-  }
+.btn-submit {
+  background: #2e8b57;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.btn-submit:hover {
+  background: #257a4c;
+}

@@ -1,3 +1,6 @@
+<% content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
 <div class="catch-show-container">
 
   <div class="catch-author-box">
@@ -19,15 +22,15 @@
         <% if @catch.images.attached? %>
           <% @catch.images.each do |img| %>
             <div class="swiper-slide">
-              <%= image_tag img, class: "catch-image" %>
+              <%= image_tag img, class: "catch-image", data: { turbo: false } %>
             </div>
-          <% end %>
-        <% else %>
-          <div class="swiper-slide no-image-slide">
-            <p>画像がありません</p>
-          </div>
         <% end %>
-      </div>
+      <% else %>
+        <div class="swiper-slide no-image-slide">
+          <p>画像がありません</p>
+        </div>
+      <% end %>
+    </div>
 
       <div class="swiper-pagination"></div>
       <div class="swiper-button-prev"></div>
@@ -36,34 +39,33 @@
   </div>
 
   <div class="catch-info-card">
-
     <div class="card-header">
       <h2>🐟 <%= @catch.fish_name %></h2>
     </div>
 
     <div class="info-row">
-      <span class="info-label">日付</span>
-      <span class="info-value"><%= @catch.caught_on %></span>
+      <span>日付</span>
+      <span><%= @catch.caught_on %></span>
     </div>
 
     <div class="info-row">
-      <span class="info-label">サイズ</span>
-      <span class="info-value"><%= @catch.size %> cm</span>
+      <span>サイズ</span>
+      <span><%= @catch.size %> cm</span>
     </div>
 
     <div class="info-row">
-      <span class="info-label">場所</span>
-      <span class="info-value"><%= @catch.location %></span>
+      <span>場所</span>
+      <span><%= @catch.location %></span>
     </div>
 
     <div class="info-row">
-      <span class="info-label">状況</span>
-      <span class="info-value"><%= @catch.condition %></span>
+      <span>状況</span>
+      <span><%= @catch.condition %></span>
     </div>
 
     <div class="info-row">
-      <span class="info-label">タックル</span>
-      <span class="info-value"><%= @catch.tackle %></span>
+      <span>タックル</span>
+      <span><%= @catch.tackle %></span>
     </div>
 
     <div class="memo-box">
@@ -71,6 +73,19 @@
       <div class="memo-content"><%= simple_format(@catch.memo) %></div>
     </div>
   </div>
+
+  <% if @catch.user == current_user %>
+  <div class="catch-action-buttons">
+    <%= link_to "編集する", edit_catch_path(@catch), class: "btn edit-btn" %>
+
+    <%= button_to "削除する",
+      catch_path(@catch),
+      method: :delete,
+      data: { confirm: "本当に削除しますか？" },
+      class: "btn delete-btn",
+      form: { style: "display:inline;" } %>
+  </div>
+<% end %>
 
   <div class="show-back-container">
     <%= link_to "一覧へ戻る", catches_path, class: "btn-back" %>

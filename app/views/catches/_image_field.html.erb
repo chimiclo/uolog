@@ -1,0 +1,18 @@
+<div class="form-group image-field-group">
+  <%= form.label :images, "釣果画像" %>
+  <%= form.file_field :images, multiple: true, class: "form-control", accept: "image/*" %>
+
+  <% if form.object.images.attached? %>
+    <div class="image-preview-box">
+      <% form.object.images.each do |img| %>
+        <div class="preview-item">
+          <%= image_tag img.variant(resize_to_limit: [120, 120]), class: "preview-thumb" %>
+
+          <label class="delete-checkbox">
+            <%= check_box_tag "catch[remove_image_ids][]", img.id %> 削除
+          </label>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

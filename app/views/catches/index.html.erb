@@ -15,6 +15,9 @@
           <p class="catch-date">📅 <%= catch_record.caught_on %></p>
           <p class="catch-location">📍 <%= catch_record.location %></p>
         </div>
+        <div class="pagination-container">
+          <%= paginate @catches %>
+        </div>
       <% end %>
     <% end %>
   </div>
