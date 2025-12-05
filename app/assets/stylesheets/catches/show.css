@@ -46,7 +46,7 @@
     height: 60vh;
   }
 
-  .catch-image {
+  .catch-show-container .catch-image img {
     width: 100%;
     height: 60vh;
     object-fit: cover;

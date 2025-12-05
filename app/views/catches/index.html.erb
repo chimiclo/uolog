@@ -1,22 +1,21 @@
-<h1 style="text-align:center; margin: 30px 0;">釣果一覧</h1>
-
-<div class="catch-list">
-  <% @catches.each do |catch_record| %>
-    <%= link_to catch_path(catch_record), class: "catch-card" do %>
-
-      <div class="catch-image">
-        <% if catch_record.images.attached? %>
-          <%= image_tag catch_record.images.first.variant(resize_to_fill: [600, 400]) %>
-        <% else %>
-          <div class="no-image">No Image</div>
-        <% end %>
-      </div>
-
-      <div class="catch-info">
-        <h3 class="fish-name"><%= catch_record.fish_name %></h3>
-        <p class="catch-date">📅 <%= catch_record.caught_on %></p>
-        <p class="catch-location">📍 <%= catch_record.location %></p>
-      </div>
+<div class="catch-container">
+  <h1 class="page-title">釣果一覧</h1>
+  <div class="catch-list">
+    <% @catches.each do |catch_record| %>
+      <%= link_to catch_path(catch_record), class: "catch-card" do %>
+        <div class="catch-image">
+          <% if catch_record.images.attached? %>
+            <%= image_tag catch_record.images.first.variant(resize_to_fill: [600, 400]) %>
+          <% else %>
+            <div class="no-image">No Image</div>
+          <% end %>
+        </div>
+        <div class="catch-info">
+          <h3 class="fish-name"><%= catch_record.fish_name %></h3>
+          <p class="catch-date">📅 <%= catch_record.caught_on %></p>
+          <p class="catch-location">📍 <%= catch_record.location %></p>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
