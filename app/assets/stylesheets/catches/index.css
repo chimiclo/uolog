@@ -1,0 +1,13 @@
+.catch-card {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    z-index: 1;
+  }
+
+  .catch-card:hover {
+    transform: translateY(-5px);
+    transition: 0.2s ease;
+  }

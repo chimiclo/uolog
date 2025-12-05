@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
-  get "catches/new"
-  get "catches/create"
-  get "profiles/show"
-  get "profiles/edit"
-  get "profiles/update"
   devise_for :users
-  get "home/index"
-  root "home#index"
+  devise_scope :user do
+    get "/users/sign_out", to: "devise/sessions#destroy"
+  end
+  root "catches#index"
 
   resource :profile, only: %i[show edit update]
   resources :catches do
-    collection do
-      get :map
-    end
+    collection { get :map }
   end
 end
