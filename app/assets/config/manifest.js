@@ -1,4 +1,4 @@
 //= link_tree ../images
-//= link_directory ../stylesheets .css
-//= link_tree ../javascripts
-//= link_tree ../javascripts/controllers .js
+//= link_tree ../stylesheets
+//= link application.js
+//= link swiper_init.js
