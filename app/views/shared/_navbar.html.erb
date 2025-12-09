@@ -1,39 +1,33 @@
 <header class="navbar">
-  <div class="container">
+  <div class="navbar-container">
     <div class="logo">
       <%= link_to root_path do %>
         <i class="fa-solid fa-fish"></i>
-        <span>UOLOG</span>
+        UOLOG
       <% end %>
     </div>
 
     <nav class="nav-links">
       <ul>
         <li><%= link_to root_path do %>
-          <i class="fa-solid fa-water"></i> ホーム
+          <i class="fa-solid fa-house"></i> ホーム
         <% end %></li>
 
         <% if user_signed_in? %>
-          <li><%= link_to profile_path(current_user.profile) do %>
+          <li><%= link_to profile_path do %>
             <i class="fa-solid fa-user"></i> マイページ
           <% end %></li>
 
           <li><%= link_to new_catch_path do %>
-            <i class="fa-solid fa-book-open"></i> 釣果を投稿
+            <i class="fa-solid fa-book"></i> 釣果を投稿
           <% end %></li>
 
-          <li>
-            <%= link_to "<i class='fa-solid fa-right-from-bracket'></i> ログアウト".html_safe,
-                destroy_user_session_path,
-                data: { turbo_method: :delete } %>
-          </li>
+          <li><%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+            <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+          <% end %></li>
         <% else %>
           <li><%= link_to new_user_session_path do %>
             <i class="fa-solid fa-right-to-bracket"></i> ログイン
-          <% end %></li>
-
-          <li><%= link_to new_user_registration_path do %>
-            <i class="fa-solid fa-user-plus"></i> 新規登録
           <% end %></li>
         <% end %>
       </ul>
