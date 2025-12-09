@@ -13,7 +13,6 @@
     color: #333;
   }
 
-
   /* ===============================
      共通レイアウト
   ================================ */
@@ -32,7 +31,6 @@
     opacity: 0.8;
   }
 
-  /* Flash メッセージ */
   .flash {
     padding: 12px 16px;
     margin: 10px auto;
@@ -51,11 +49,10 @@
     color: #9b1c1c;
   }
 
-
-/* ===============================
-   Navbar
-================================ */
-.navbar {
+  /* ===============================
+     Navbar
+  ================================ */
+  .navbar {
     position: fixed;
     top: 0;
     width: 100%;
@@ -66,7 +63,6 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
 
-  /* 内側コンテナ（中央寄せ & 幅制御） */
   .navbar-container {
     height: 100%;
     max-width: 1100px;
@@ -77,7 +73,6 @@
     align-items: center;
   }
 
-  /* ロゴ */
   .logo a {
     display: flex;
     align-items: center;
@@ -91,7 +86,6 @@
     font-size: 22px;
   }
 
-  /* メニュー */
   .nav-links ul {
     list-style: none;
     display: flex;
@@ -125,7 +119,6 @@
     color: #777;
     margin-top: 40px;
   }
-
 
   /* ===============================
      Auth（ログイン・新規登録）
@@ -168,7 +161,6 @@
     opacity: 0.9;
   }
 
-
   /* ===============================
      Profile
   ================================ */
@@ -202,7 +194,6 @@
     border-radius: 6px;
     margin-top: 16px;
   }
-
 
   /* ===============================
      Catches（釣果一覧）
@@ -251,34 +242,133 @@
   .catch-form {
     max-width: 650px;
     margin: 40px auto;
-    padding: 24px;
+    padding: 28px;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  }
+
+  .catch-form-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2E8B57;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .catch-form .form-group {
+    margin-bottom: 22px;
+  }
+
+  .catch-form label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
   }
 
   .catch-form input,
   .catch-form textarea,
   .catch-form select {
     width: 100%;
-    padding: 10px;
-    margin-top: 12px;
+    padding: 10px 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
+    background: #fafafa;
+    font-size: 15px;
+    transition: border-color 0.2s ease, background 0.2s ease;
   }
 
-  .catch-submit-btn {
-    display: block;
-    width: 100%;
+  .catch-form input:focus,
+  .catch-form textarea:focus,
+  .catch-form select:focus {
+    outline: none;
+    border-color: #2E8B57;
+    background: #fff;
+  }
+
+  .catch-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  /* ===============================
+     Submit ボタン
+  ================================ */
+  .form-actions {
+    margin-top: 28px;
+    text-align: center;
+  }
+
+  .btn-submit {
     background: #2E8B57;
     color: #fff;
-    padding: 14px;
-    text-align: center;
-    margin-top: 20px;
+    padding: 12px 24px;
     border-radius: 8px;
+    font-size: 15px;
     font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
   }
 
+  .btn-submit:hover {
+    opacity: 0.9;
+  }
+
+  /* ===============================
+     画像プレビュー（編集用）
+  ================================ */
+  .edit-image-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .edit-image-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .edit-image {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  /* 削除チェックボックス行 */
+  .image-delete-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .image-delete-row input[type="checkbox"] {
+    margin: 0;
+  }
+
+  /* ===============================
+     戻るボタン
+  ================================ */
+  .form-back {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-back .btn-back {
+    color: #2E8B57;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: inline-block;
+  }
 
   /* ===============================
      Catch Show（釣果詳細）
@@ -307,7 +397,6 @@
     margin-bottom: 10px;
     font-size: 16px;
   }
-
 
   /* ===============================
      Utility Classes

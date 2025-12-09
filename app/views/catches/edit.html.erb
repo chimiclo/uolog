@@ -1,11 +1,9 @@
 <div class="catch-form-container">
   <h1 class="form-title">釣果を編集</h1>
 
-  <%= form_with(model: @catch, local: true) do |form| %>
-    <%= render "form", form: form %>
-  <% end %>
+  <%= render "form", catch: @catch %>
 
   <div class="form-back">
-    <%= link_to "戻る", catch_path(@catch), class: "btn-back" %>
+    <%= link_to "詳細へ戻る", catch_path(@catch), class: "btn-back" %>
   </div>
 </div>

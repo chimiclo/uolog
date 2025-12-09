@@ -38,7 +38,9 @@ class CatchesController < ApplicationController
       end
     end
 
-    if @catch.update(catch_params)
+    filtered_params = catch_params.except(:remove_image_ids)
+
+    if @catch.update(filtered_params)
       redirect_to @catch, notice: "釣果を更新しました！"
     else
       flash.now[:alert] = "入力内容を確認してください。"
@@ -69,8 +71,10 @@ class CatchesController < ApplicationController
 
   def catch_params
     params.require(:catch).permit(
-      :caught_on, :condition, :fish_name, :size, :location,
-      :latitude, :longitude, :tackle, :memo, images: []
+      :caught_on, :fish_name, :size, :location,
+      :condition, :tackle, :memo,
+      images: [],
+      remove_image_ids: []
     )
   end
 end
