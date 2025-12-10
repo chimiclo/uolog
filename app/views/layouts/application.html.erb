@@ -2,18 +2,10 @@
 <html>
   <head>
     <title><%= content_for(:title) || "UOLOG" %></title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="UOLOG">
-    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -28,7 +20,6 @@
     <% if notice %>
       <div class="flash flash-notice"><%= notice %></div>
     <% end %>
-
     <% if alert %>
       <div class="flash flash-alert"><%= alert %></div>
     <% end %>
@@ -38,5 +29,7 @@
     <%= render "shared/footer" %>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="/assets/swiper_init.js" data-turbo-track="reload"></script>
   </body>
 </html>

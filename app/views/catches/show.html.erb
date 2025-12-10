@@ -16,22 +16,33 @@
   <div class="catch-swiper-container">
     <div class="swiper myCatchSwiper">
       <div class="swiper-wrapper">
+
         <% if @catch.images.attached? %>
           <% @catch.images.each do |img| %>
             <div class="swiper-slide">
               <%= image_tag img, class: "catch-image", data: { turbo: false } %>
             </div>
+          <% end %>
+        <% else %>
+          <div class="swiper-slide no-image-slide">
+            <p>画像がありません</p>
+          </div>
         <% end %>
-      <% else %>
-        <div class="swiper-slide no-image-slide">
-          <p>画像がありません</p>
-        </div>
-      <% end %>
-    </div>
+
+      </div>
 
       <div class="swiper-pagination"></div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
+    </div>
+    <div class="swiper myThumbsSwiper">
+      <div class="swiper-wrapper">
+        <% @catch.images.each do |img| %>
+          <div class="swiper-slide thumb-slide">
+            <%= image_tag img.variant(resize_to_fill: [120, 120]), class: "thumb-image" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -72,20 +83,21 @@
   </div>
 
   <% if @catch.user == current_user %>
-  <div class="catch-action-buttons">
-    <%= link_to "編集する", edit_catch_path(@catch), class: "btn edit-btn" %>
+    <div class="catch-action-buttons">
+      <%= link_to "編集する", edit_catch_path(@catch), class: "btn edit-btn" %>
 
-    <%= link_to "削除する",
-      catch_path(@catch),
-      data: {
-        turbo_method: :delete,
-        turbo_confirm: "本当に削除しますか？"
-      },
-      class: "btn delete-btn" %>
-  </div>
-<% end %>
+      <%= link_to "削除する",
+        catch_path(@catch),
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "本当に削除しますか？"
+        },
+        class: "btn delete-btn" %>
+    </div>
+  <% end %>
 
   <div class="show-back-container">
     <%= link_to "一覧へ戻る", catches_path, class: "btn-back" %>
   </div>
+
 </div>
