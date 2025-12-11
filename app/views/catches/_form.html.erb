@@ -37,8 +37,9 @@
     </div>
 
     <div id="uolog-map"
-      data-turbo="false"
-      style="height: 300px; margin-bottom: 20px;">
+       data-lat="<%= @catch.latitude || 26.3344 %>"
+       data-lng="<%= @catch.longitude || 127.8056 %>"
+       style="height: 300px; margin-top: 20px;">
     </div>
 
     <%= form.hidden_field :latitude, id: "latitude_field" %>

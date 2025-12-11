@@ -1,9 +1,4 @@
-/*
- *= require_tree .
- *= require_self
- */
-
-* {
+  *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -179,6 +174,13 @@
     padding: 16px;
   }
 
+  .catch-info-card {
+    width: 100% !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
   .catch-form {
     max-width: 650px;
     margin: 40px auto;
@@ -332,4 +334,11 @@
   .swiper-button-next::after,
   .swiper-button-prev::after {
     font-size: 20px;
+  }
+
+  #uolog-map {
+    width: 100% !important;
+    min-width: 300px !important;
+    height: 300px !important;
+    display: block !important;
   }
