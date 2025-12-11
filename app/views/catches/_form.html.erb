@@ -21,8 +21,6 @@
       <%= form.text_field :location, class: "form-control" %>
     </div>
 
-    <div id="uolog-map" style="height: 300px; margin-bottom: 20px; border-radius: 8px;"></div>
-
     <div class="form-group">
       <%= form.label :condition, "状況（天気 / 潮）" %>
       <%= form.text_field :condition, class: "form-control" %>
@@ -36,6 +34,11 @@
     <div class="form-group">
       <%= form.label :memo, "メモ" %>
       <%= form.text_area :memo, class: "form-control" %>
+    </div>
+
+    <div id="uolog-map"
+      data-turbo="false"
+      style="height: 300px; margin-bottom: 20px;">
     </div>
 
     <%= form.hidden_field :latitude, id: "latitude_field" %>

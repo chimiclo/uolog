@@ -80,6 +80,14 @@
       <h3>メモ</h3>
       <div class="memo-content"><%= simple_format(@catch.memo) %></div>
     </div>
+
+    <div id="uolog-map"
+       data-turbo="false"
+       data-lat="<%= @catch.latitude || 26.3344 %>"
+       data-lng="<%= @catch.longitude || 127.8056 %>"
+       style="height: 300px; margin-top: 20px;">
+    </div>
+
   </div>
 
   <% if @catch.user == current_user %>
