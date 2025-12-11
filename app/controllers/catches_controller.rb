@@ -73,6 +73,7 @@ class CatchesController < ApplicationController
     params.require(:catch).permit(
       :caught_on, :fish_name, :size, :location,
       :condition, :tackle, :memo,
+      :latitude, :longitude,
       images: [],
       remove_image_ids: []
     )

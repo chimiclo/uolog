@@ -1,6 +1,4 @@
-function initClickMap() {
-  if (!document.body.classList.contains("catches-form-page")) return;
-
+document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("uolog-map");
   if (!el) return;
 
@@ -28,7 +26,6 @@ function initClickMap() {
     if (marker) marker.remove();
     marker = L.marker([la, ln]).addTo(map);
   });
-}
 
-document.addEventListener("turbo:load", initClickMap);
-document.addEventListener("DOMContentLoaded", initClickMap);
+  setTimeout(() => map.invalidateSize(), 200);
+});
