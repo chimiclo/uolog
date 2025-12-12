@@ -36,12 +36,20 @@
       <%= form.text_area :memo, class: "form-control" %>
     </div>
 
+    <div id="uolog-map"
+      data-lat="<%= @catch.latitude || 26.3344 %>"
+      data-lng="<%= @catch.longitude || 127.8056 %>"
+      style="height: 300px; margin-top: 20px;">
+    </div>
+
+    <%= form.hidden_field :latitude, id: "latitude_field" %>
+    <%= form.hidden_field :longitude, id: "longitude_field" %>
+
     <%= render "image_field", form: form, catch: catch %>
 
     <div class="form-actions">
       <%= form.submit(catch.new_record? ? "登録する" : "更新する",
                       class: "btn-submit") %>
     </div>
-
   </div>
 <% end %>

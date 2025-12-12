@@ -16,25 +16,17 @@
   <div class="catch-swiper-container">
     <div class="swiper myCatchSwiper">
       <div class="swiper-wrapper">
-
-        <% if @catch.images.attached? %>
-          <% @catch.images.each do |img| %>
-            <div class="swiper-slide">
-              <%= image_tag img, class: "catch-image", data: { turbo: false } %>
-            </div>
-          <% end %>
-        <% else %>
-          <div class="swiper-slide no-image-slide">
-            <p>画像がありません</p>
+        <% @catch.images.each do |img| %>
+          <div class="swiper-slide">
+            <%= image_tag img, class: "catch-image", data: { turbo: false } %>
           </div>
         <% end %>
-
       </div>
-
       <div class="swiper-pagination"></div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
+
     <div class="swiper myThumbsSwiper">
       <div class="swiper-wrapper">
         <% @catch.images.each do |img| %>
@@ -51,53 +43,34 @@
       <h2>🐟 <%= @catch.fish_name %></h2>
     </div>
 
-    <div class="info-row">
-      <span>日付</span>
-      <span><%= @catch.caught_on %></span>
-    </div>
-
-    <div class="info-row">
-      <span>サイズ</span>
-      <span><%= @catch.size %> cm</span>
-    </div>
-
-    <div class="info-row">
-      <span>場所</span>
-      <span><%= @catch.location %></span>
-    </div>
-
-    <div class="info-row">
-      <span>状況</span>
-      <span><%= @catch.condition %></span>
-    </div>
-
-    <div class="info-row">
-      <span>タックル</span>
-      <span><%= @catch.tackle %></span>
-    </div>
+    <div class="info-row"><span>日付</span><span><%= @catch.caught_on %></span></div>
+    <div class="info-row"><span>サイズ</span><span><%= @catch.size %> cm</span></div>
+    <div class="info-row"><span>場所</span><span><%= @catch.location %></span></div>
+    <div class="info-row"><span>状況</span><span><%= @catch.condition %></span></div>
+    <div class="info-row"><span>タックル</span><span><%= @catch.tackle %></span></div>
 
     <div class="memo-box">
       <h3>メモ</h3>
       <div class="memo-content"><%= simple_format(@catch.memo) %></div>
+    </div>
+
+    <div id="uolog-map"
+      data-lat="<%= @catch.latitude || 26.3344 %>"
+      data-lng="<%= @catch.longitude || 127.8056 %>"
+      style="height: 300px; margin-top: 20px;">
     </div>
   </div>
 
   <% if @catch.user == current_user %>
     <div class="catch-action-buttons">
       <%= link_to "編集する", edit_catch_path(@catch), class: "btn edit-btn" %>
-
-      <%= link_to "削除する",
-        catch_path(@catch),
-        data: {
-          turbo_method: :delete,
-          turbo_confirm: "本当に削除しますか？"
-        },
-        class: "btn delete-btn" %>
+      <%= link_to "削除する", catch_path(@catch),
+          data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+          class: "btn delete-btn" %>
     </div>
   <% end %>
 
   <div class="show-back-container">
     <%= link_to "一覧へ戻る", catches_path, class: "btn-back" %>
   </div>
-
 </div>
