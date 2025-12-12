@@ -1,3 +1,4 @@
 //= link_tree ../images
-//= link_tree ../stylesheets
-//= link application.js
+//= link application.css
+//= link show_map.js
+//= link map.js
