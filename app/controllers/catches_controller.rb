@@ -8,9 +8,10 @@ class CatchesController < ApplicationController
   end
 
   def create
-    @catch = current_user.catches.build(catch_params)
+    @catch = current_user.catches.build(catch_params.except(:remove_image_ids))
 
     if @catch.save
+      attach_new_images(@catch)
       redirect_to @catch, notice: "釣果を登録しました！"
     else
       flash.now[:alert] = "入力内容を確認してください。"
@@ -38,9 +39,17 @@ class CatchesController < ApplicationController
       end
     end
 
-    filtered_params = catch_params.except(:remove_image_ids)
+    attrs        = catch_params.dup
+    new_images   = attrs.delete(:images)
+    attrs.delete(:remove_image_ids)
 
-    if @catch.update(filtered_params)
+    if @catch.update(attrs)
+      if new_images.present?
+        new_images.each do |img|
+          @catch.images.attach(img)
+        end
+      end
+
       redirect_to @catch, notice: "釣果を更新しました！"
     else
       flash.now[:alert] = "入力内容を確認してください。"
@@ -74,8 +83,17 @@ class CatchesController < ApplicationController
       :caught_on, :fish_name, :size, :location,
       :condition, :tackle, :memo,
       :latitude, :longitude,
-      images: [],
-      remove_image_ids: []
+      { images: [] },
+      { remove_image_ids: [] }
     )
+  end
+
+  def attach_new_images(catch)
+    imgs = catch_params[:images]
+    return if imgs.blank?
+
+    imgs.each do |img|
+      catch.images.attach(img)
+    end
   end
 end

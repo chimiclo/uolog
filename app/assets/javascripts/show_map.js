@@ -1,17 +1,26 @@
-document.addEventListener("turbo:load", () => {
-  const mapElement = document.getElementById("uolog-map");
-  if (!mapElement) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("uolog-map");
+  if (!el) return;
 
-  const lat = parseFloat(mapElement.dataset.lat);
-  const lng = parseFloat(mapElement.dataset.lng);
+  if (document.querySelector(".catch-form-container")) return;
 
-  const map = L.map("uolog-map").setView([lat, lng], 13);
+  console.log("📍 SHOW_MAP LOADED");
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+  const lat = parseFloat(el.dataset.lat);
+  const lng = parseFloat(el.dataset.lng);
+
+  if (isNaN(lat) || isNaN(lng)) {
+    console.warn("⚠️ 座標なし");
+    return;
+  }
+
+  const map = L.map(el).setView([lat, lng], 13);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+  }).addTo(map);
 
   L.marker([lat, lng]).addTo(map);
 
-  setTimeout(() => {
-    map.invalidateSize();
-  }, 300);
+  setTimeout(() => map.invalidateSize(), 300);
 });

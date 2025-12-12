@@ -1,5 +1,4 @@
 //= require rails-ujs
-//= require show_map
 //= require map
+//= require show_map
 //= require swiper_init
-//= require_tree .
