@@ -33,17 +33,32 @@
   }
 
   .btn {
-    padding: 10px 18px;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 14px 28px;
+    font-size: 16px;
     font-weight: bold;
-    text-decoration: none;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+  }
+
+  .btn:hover {
+    opacity: 0.95;
+  }
+
+  .btn:active {
+    transform: translateY(1px);
   }
 
   .btn-primary {
     background: #2E8B57;
     color: #fff;
+    box-shadow: 0 4px 10px rgba(46,139,87,0.25);
   }
 
   .btn-danger {
@@ -252,25 +267,33 @@
     padding: 28px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
   .catch-form-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     color: #2E8B57;
     margin-bottom: 24px;
+    text-align: center;
   }
 
   .catch-form .form-group {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
   }
 
-  .catch-form input,
-  .catch-form textarea,
-  .catch-form select {
+  .catch-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+  }
+
+  .catch-form input:not([type="submit"]),
+  .catch-form select,
+  .catch-form textarea {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
     background: #fafafa;
@@ -293,27 +316,17 @@
     text-align: center;
   }
 
-  .btn-submit {
-    background: #2E8B57;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-  }
-
   .edit-image-list {
     display: flex;
-    flex-direction: column;
     gap: 16px;
+    margin-top: 12px;
   }
 
   .edit-image {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
+    width: 120px;
+    height: 120px;
     border-radius: 8px;
+    object-fit: cover;
   }
 
   .image-delete-row {
@@ -321,16 +334,64 @@
     gap: 6px;
   }
 
+  .form-actions {
+    margin-top: 32px;
+    text-align: center;
+  }
+
   .form-back {
     margin-top: 20px;
-    display: flex;
-    justify-content: center;
+    text-align: center;
   }
 
   .btn-back {
     color: #2E8B57;
     font-weight: bold;
     padding: 8px 12px;
+  }
+
+  /* ===============================
+   Image Field (Edit)
+================================ */
+  .edit-image-list {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .edit-image-box {
+    width: 150px;
+  }
+
+  .edit-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .image-delete-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .image-delete-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .image-delete-row label {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
   }
 
   /* ===============================
@@ -418,15 +479,17 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
-  .myCatchSwiper .swiper-wrapper,
   .myCatchSwiper .swiper-slide {
-    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .catch-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center center;
   }
 
   .no-image-box {
@@ -487,8 +550,8 @@
   }
 
   #uolog-map {
-    width: 100% !important;
-    min-width: 300px !important;
-    height: 300px !important;
-    display: block !important;
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    border-radius: 8px;
   }

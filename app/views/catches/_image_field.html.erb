@@ -1,21 +1,30 @@
 <div class="form-group">
   <%= form.label :images, "釣果画像" %>
-  <%= form.file_field :images, multiple: true, class: "form-control", accept: "image/*" %>
+
+  <%= form.file_field :images,
+        multiple: true,
+        class: "form-control",
+        accept: "image/*" %>
 
   <% if catch.images.attached? %>
     <div class="edit-image-list">
       <% catch.images.each do |image| %>
         <div class="edit-image-box">
 
-          <%= image_tag image.variant(resize_to_fill: [150, 150]),
-                        class: "edit-image" %>
+          <%= image_tag(
+                image.variant(resize_to_fill: [150, 150]),
+                class: "edit-image"
+              ) %>
 
           <div class="image-delete-row">
+            <% checkbox_id = "remove_image_#{image.id}" %>
+
             <%= form.check_box :remove_image_ids,
-              { multiple: true },
-              image.id,
-              nil %>
-            <label>削除</label>
+                  { multiple: true, id: checkbox_id },
+                  image.id,
+                  nil %>
+
+            <%= label_tag checkbox_id, "削除" %>
           </div>
 
         </div>
@@ -23,4 +32,3 @@
     </div>
   <% end %>
 </div>
-

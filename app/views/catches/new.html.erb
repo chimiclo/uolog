@@ -1,10 +1,12 @@
-<div class="catch-form-container catches-form-page">
-  <h1 class="form-title">釣果を登録</h1>
+<div class="catch-form">
+  <h1 class="catch-form-title">釣果を登録</h1>
 
   <%= render "form", catch: @catch %>
 
   <div class="form-back">
-    <%= link_to "一覧へ戻る", catches_path, class: "btn-back" %>
+    <%= link_to "一覧へ戻る",
+          catches_path,
+          class: "btn btn-secondary" %>
   </div>
 </div>
 

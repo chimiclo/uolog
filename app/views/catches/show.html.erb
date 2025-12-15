@@ -21,7 +21,11 @@
       <div class="swiper-wrapper">
         <% @catch.images.each do |img| %>
           <div class="swiper-slide">
-            <%= image_tag img, class: "catch-image" %>
+            <% if img.variable? %>
+              <%= image_tag img.variant(resize_to_limit: [1200, 800]), class: "catch-image" %>
+            <% else %>
+              <%= image_tag img, class: "catch-image" %>
+            <% end %>
           </div>
         <% end %>
       </div>
