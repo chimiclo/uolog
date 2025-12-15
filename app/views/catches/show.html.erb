@@ -16,6 +16,7 @@
   </div>
 
   <div class="catch-swiper-container">
+  <% if @catch.images.attached? %>
     <div class="swiper myCatchSwiper">
       <div class="swiper-wrapper">
         <% @catch.images.each do |img| %>
@@ -34,17 +35,18 @@
       <div class="swiper-wrapper">
         <% @catch.images.each do |img| %>
           <div class="swiper-slide thumb-slide">
-            <% if img.variable? %>
-              <%= image_tag img.variant(resize_to_fill: [120, 120]),
-                            class: "thumb-image" %>
-            <% else %>
-              <%= image_tag img, class: "thumb-image" %>
-            <% end %>
+            <%= image_tag img.variant(resize_to_fill: [120, 120]),
+                          class: "thumb-image" %>
           </div>
         <% end %>
       </div>
     </div>
-  </div>
+  <% else %>
+    <div class="no-image-box">
+      No Image
+    </div>
+  <% end %>
+</div>
 
   <div class="catch-info-card">
     <div class="card-header">
@@ -92,25 +94,28 @@
   </div>
 
   <% if @catch.user == current_user %>
-    <div class="catch-action-buttons">
-      <%= link_to "編集する",
-            edit_catch_path(@catch),
-            class: "btn edit-btn" %>
+  <div class="catch-action-buttons">
+    <%= link_to "編集する",
+          edit_catch_path(@catch),
+          class: "btn btn-primary" %>
 
-      <%= button_to "削除する",
-            catch_path(@catch),
-            method: :delete,
-            form: {onsubmit: "return confirm('本当にこの釣果を削除しますか？');"},
-            class: "btn delete-btn" %>
-    </div>
-  <% end %>
+    <%= button_to "削除する",
+          catch_path(@catch),
+          method: :delete,
+          form: { onsubmit: "return confirm('本当にこの釣果を削除しますか？');" },
+          class: "btn btn-danger" %>
 
-  <div class="show-back-container">
     <%= link_to "一覧へ戻る",
           catches_path,
-          class: "btn-back" %>
+          class: "btn btn-secondary" %>
   </div>
-</div>
+<% else %>
+  <div class="catch-action-buttons">
+    <%= link_to "一覧へ戻る",
+          catches_path,
+          class: "btn btn-secondary" %>
+  </div>
+<% end %>
 
 <%= javascript_include_tag "show_map", defer: true %>
 <%= javascript_include_tag "swiper_init", defer: true %>
