@@ -6,7 +6,7 @@ Bundler.require(*Rails.groups)
 module App
   class Application < Rails::Application
     config.load_defaults 8.1
-    config.i18n.available_locales = [:ja]
+    config.i18n.available_locales = [ :ja ]
     config.i18n.default_locale = :ja
     config.autoload_lib(ignore: %w[assets tasks])
   end
