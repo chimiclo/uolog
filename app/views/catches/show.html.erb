@@ -10,7 +10,9 @@
       <% end %>
 
       <div class="author-info">
-        <p class="author-name"><%= @catch.user.profile.name %></p>
+        <%= link_to @catch.user.profile.name,
+              user_profile_path(@catch.user),
+              class: "author-name author-link" %>
       </div>
     </div>
   </div>

@@ -1,64 +1,87 @@
-<div style="
-  max-width: 480px;
-  margin: 40px auto;
-  padding: 30px 20px;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: center;
-">
+<div class="container">
+  <div class="profile-page">
+    <div class="profile-card">
 
-  <% if @profile.avatar.attached? %>
-  <div style="
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    overflow: hidden;
-    padding: 4px;
-    background: linear-gradient(135deg, #4caf50, #2e8b57);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-">
-  <div style="width:100%; height:100%; border-radius:50%; overflow:hidden;">
-    <%= image_tag @profile.avatar.variant(resize_to_limit: [160, 160]),
-        style: "width:100%; height:100%; object-fit:cover;" %>
+      <div class="profile-avatar-wrapper">
+        <% if @profile.avatar.attached? %>
+          <%= image_tag @profile.avatar.variant(resize_to_fill: [160, 160]),
+                        class: "profile-avatar" %>
+        <% else %>
+          <div class="profile-avatar placeholder">👤</div>
+        <% end %>
+      </div>
+
+      <h2 class="profile-name"><%= @profile.name %></h2>
+
+      <div class="profile-badge">
+        <span class="badge-icon">🎣</span>
+        <span class="badge-count"><%= @catches_count %></span>
+        <span class="badge-label">釣果</span>
+      </div>
+
+      <div class="profile-item">
+        <span class="label">釣りスタイル</span>
+        <span class="value"><%= @profile.style.presence || "未設定" %></span>
+      </div>
+
+      <div class="profile-item">
+        <span class="label">よく行くエリア</span>
+        <span class="value"><%= @profile.area.presence || "未設定" %></span>
+      </div>
+
+      <div class="profile-item">
+        <span class="label">コメント</span>
+        <span class="value"><%= @profile.comment.presence || "未設定" %></span>
+      </div>
+
+      <% if @user == current_user %>
+        <div class="profile-edit-btn">
+          <%= link_to "プロフィールを編集する",
+                edit_profile_path,
+                class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+    </div>
+
+    <h2 class="section-title">
+      🎣 <%= @user == current_user ? "自分の釣果" : "#{@profile.name}の釣果" %>
+    </h2>
+
+    <% if @catches.any? %>
+      <div class="catches-index">
+        <% @catches.each do |catch| %>
+          <div class="catch-card">
+
+            <% if catch.images.attached? %>
+              <%= image_tag catch.images.first.variant(resize_to_fill: [300, 300]) %>
+            <% else %>
+              <div class="no-image">No Image</div>
+            <% end %>
+
+            <div class="catch-card-body">
+              <div class="catch-fish-name"><%= catch.fish_name %></div>
+
+              <div class="catch-meta">
+                <span>📅 <%= catch.caught_on %></span>
+                <span>📍 <%= catch.location %></span>
+              </div>
+
+              <%= link_to "詳細を見る",
+                    catch_path(catch),
+                    class: "btn btn-secondary btn-small" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="pagination-wrapper">
+        <%= paginate @catches %>
+      </div>
+
+    <% else %>
+      <p class="no-catches-text">まだ釣果が投稿されていません。</p>
+    <% end %>
+
   </div>
-</div>
-  <% else %>
-    <p>プロフィール画像は未設定です</p>
-  <% end %>
-
-  <h2 style="margin-bottom: 18px; color: #333; font-size: 26px; font-weight: 700;">
-    <%= @profile.name %>
-  </h2>
-
-  <div style="margin-bottom: 16px;">
-    <strong style="color: #777;">釣りスタイル:</strong><br>
-    <span style="font-size: 18px; color: #222;"><%= @profile.style %></span>
-  </div>
-
-  <div style="margin-bottom: 16px;">
-    <strong style="color: #777;">よく行くエリア:</strong><br>
-    <span style="font-size: 18px; color: #222;"><%= @profile.area %></span>
-  </div>
-
-  <div style="margin-bottom: 16px;">
-    <strong style="color: #777;">コメント:</strong><br>
-    <span style="font-size: 18px; color: #222;"><%= @profile.comment %></span>
-  </div>
-
-  <%= link_to "プロフィールを編集する",
-    edit_profile_path,
-    style: "
-      display:inline-block;
-      padding:12px 25px;
-      margin-top:10px;
-      background:#4CAF50;
-      color:white;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:bold;
-    "
-  %>
-
 </div>
