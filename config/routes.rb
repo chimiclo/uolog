@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: [:passwords, :confirmations]
+  devise_for :users, skip: [ :passwords, :confirmations ]
   devise_scope :user do
     get "/users/sign_out", to: "devise/sessions#destroy"
   end
