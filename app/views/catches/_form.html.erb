@@ -1,55 +1,57 @@
 <%= form_with(model: catch, local: true, html: { multipart: true }) do |form| %>
-  <div class="catch-form-fields">
 
-    <div class="form-group">
-      <%= form.label :caught_on, "日付" %>
-      <%= form.date_field :caught_on, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= form.label :caught_on, "日付" %>
+    <%= form.date_field :caught_on, class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <%= form.label :fish_name, "魚種" %>
-      <%= form.text_field :fish_name, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= form.label :fish_name, "魚種" %>
+    <%= form.text_field :fish_name, class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <%= form.label :size, "サイズ (cm)" %>
-      <%= form.number_field :size, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= form.label :size, "サイズ (cm)" %>
+    <%= form.number_field :size, class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <%= form.label :location, "場所" %>
-      <%= form.text_field :location, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= form.label :location, "場所" %>
+    <%= form.text_field :location, class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <%= form.label :condition, "状況（天気 / 潮）" %>
-      <%= form.text_field :condition, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= form.label :condition, "状況（天気 / 潮）" %>
+    <%= form.text_field :condition, class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <%= form.label :tackle, "タックル" %>
-      <%= form.text_field :tackle, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= form.label :tackle, "タックル" %>
+    <%= form.text_field :tackle, class: "form-control" %>
+  </div>
 
-    <div class="form-group">
-      <%= form.label :memo, "メモ" %>
-      <%= form.text_area :memo, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= form.label :memo, "メモ" %>
+    <%= form.text_area :memo, class: "form-control" %>
+  </div>
 
-    <div id="uolog-map"
-      data-lat="<%= @catch.latitude || 26.3344 %>"
-      data-lng="<%= @catch.longitude || 127.8056 %>"
-      style="height: 300px; margin-top: 20px;">
-    </div>
+  <div
+    id="uolog-map"
+    data-lat="<%= catch.latitude || 26.3344 %>"
+    data-lng="<%= catch.longitude || 127.8056 %>"
+    style="height: 300px; margin-top: 20px;">
+  </div>
 
-    <%= form.hidden_field :latitude, id: "latitude_field" %>
-    <%= form.hidden_field :longitude, id: "longitude_field" %>
+  <%= form.hidden_field :latitude, id: "latitude_field" %>
+  <%= form.hidden_field :longitude, id: "longitude_field" %>
 
-    <%= render "image_field", form: form, catch: catch %>
+  <%= render "image_field", form: form, catch: catch %>
 
     <div class="form-actions">
-      <%= form.submit(catch.new_record? ? "登録する" : "更新する",
-                      class: "btn-submit") %>
+      <%= form.submit(
+        catch.new_record? ? "登録する" : "更新する",
+        class: "btn btn-primary",
+        data: { turbo: false }
+      ) %>
     </div>
-  </div>
 <% end %>

@@ -1,15 +1,24 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile
+  before_action :set_user
 
   def show
-    @profile = current_user.profile || current_user.create_profile!
+    @profile = @user.profile || @user.create_profile!
+
+    @catches = @user.catches
+                    .order(created_at: :desc)
+                    .page(params[:page])
+                    .per(9)
+
+    @catches_count = @user.catches.count
   end
 
   def edit
-    @profile ||= current_user.create_profile!
+    redirect_to profile_path unless @user == current_user
   end
 
   def update
+    redirect_to profile_path unless @user == current_user
+
     if @profile.update(profile_params)
       redirect_to profile_path, notice: "プロフィールを更新しました"
     else
@@ -19,8 +28,15 @@ class ProfilesController < ApplicationController
 
   private
 
-  def set_profile
-    @profile = current_user.profile || current_user.create_profile!
+  def set_user
+    @user =
+      if params[:user_id]
+        User.find(params[:user_id])
+      else
+        current_user
+      end
+
+    @profile = @user.profile || @user.create_profile!
   end
 
   def profile_params

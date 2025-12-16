@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("uolog-map");
   if (!el) return;
 
-  if (!document.querySelector(".catch-form-container")) return;
-
   console.log("🗺 CLICK_MAP LOADED");
 
   const latField = document.getElementById("latitude_field");
