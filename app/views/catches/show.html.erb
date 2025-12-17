@@ -11,48 +11,53 @@
 
       <div class="author-info">
         <%= link_to @catch.user.profile.name,
-              user_profile_path(@catch.user),
-              class: "author-name author-link" %>
+                    user_profile_path(@catch.user),
+                    class: "author-name author-link" %>
       </div>
     </div>
   </div>
 
   <div class="catch-swiper-container">
-  <% if @catch.images.attached? %>
-    <div class="swiper myCatchSwiper">
-      <div class="swiper-wrapper">
-        <% @catch.images.each do |img| %>
-          <div class="swiper-slide">
-            <% if img.variable? %>
-              <%= image_tag img.variant(resize_to_limit: [1200, 800]), class: "catch-image" %>
-            <% else %>
-              <%= image_tag img, class: "catch-image" %>
+    <% if @catch.images.attached? %>
+
+      <div class="swiper myCatchSwiper">
+        <div class="swiper-wrapper">
+          <% @catch.images.each do |img| %>
+            <div class="swiper-slide">
+              <% if img.variable? %>
+                <%= image_tag img.variant(resize_to_limit: [1200, 800]),
+                              class: "catch-image" %>
+              <% else %>
+                <%= image_tag img, class: "catch-image" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+      <% if @catch.images.size > 1 %>
+        <div class="swiper myThumbsSwiper">
+          <div class="swiper-wrapper">
+            <% @catch.images.each do |img| %>
+              <div class="swiper-slide thumb-slide">
+                <%= image_tag img.variant(resize_to_fill: [120, 120]),
+                              class: "thumb-image" %>
+              </div>
             <% end %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div>
-
-    <div class="swiper myThumbsSwiper">
-      <div class="swiper-wrapper">
-        <% @catch.images.each do |img| %>
-          <div class="swiper-slide thumb-slide">
-            <%= image_tag img.variant(resize_to_fill: [120, 120]),
-                          class: "thumb-image" %>
-          </div>
-        <% end %>
+    <% else %>
+      <div class="no-image-box">
+        No Image
       </div>
-    </div>
-  <% else %>
-    <div class="no-image-box">
-      No Image
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
   <div class="catch-info-card">
     <div class="card-header">
@@ -100,28 +105,29 @@
   </div>
 
   <% if @catch.user == current_user %>
-  <div class="catch-action-buttons">
-    <%= link_to "編集する",
-          edit_catch_path(@catch),
-          class: "btn btn-primary" %>
+    <div class="catch-action-buttons">
+      <%= link_to "編集する",
+                  edit_catch_path(@catch),
+                  class: "btn btn-primary" %>
 
-    <%= button_to "削除する",
-          catch_path(@catch),
-          method: :delete,
-          form: { onsubmit: "return confirm('本当にこの釣果を削除しますか？');" },
-          class: "btn btn-danger" %>
+      <%= button_to "削除する",
+                    catch_path(@catch),
+                    method: :delete,
+                    form: { onsubmit: "return confirm('本当にこの釣果を削除しますか？');" },
+                    class: "btn btn-danger" %>
 
-    <%= link_to "一覧へ戻る",
-          catches_path,
-          class: "btn btn-secondary" %>
-  </div>
-<% else %>
-  <div class="catch-action-buttons">
-    <%= link_to "一覧へ戻る",
-          catches_path,
-          class: "btn btn-secondary" %>
-  </div>
-<% end %>
+      <%= link_to "一覧へ戻る",
+                  catches_path,
+                  class: "btn btn-secondary" %>
+    </div>
+  <% else %>
+    <div class="catch-action-buttons">
+      <%= link_to "一覧へ戻る",
+                  catches_path,
+                  class: "btn btn-secondary" %>
+    </div>
+  <% end %>
 
-<%= javascript_include_tag "show_map", defer: true %>
-<%= javascript_include_tag "swiper_init", defer: true %>
+  <%= javascript_include_tag "show_map", defer: true %>
+  <%= javascript_include_tag "swiper_init", defer: true %>
+</div>
