@@ -11,7 +11,6 @@ class CatchesController < ApplicationController
     @catch = current_user.catches.build(catch_params.except(:remove_image_ids))
 
     if @catch.save
-      attach_new_images(@catch)
       redirect_to @catch, notice: "釣果を登録しました！"
     else
       flash.now[:alert] = "入力内容を確認してください。"
@@ -39,15 +38,13 @@ class CatchesController < ApplicationController
       end
     end
 
-    attrs        = catch_params.dup
-    new_images   = attrs.delete(:images)
+    attrs      = catch_params.dup
+    new_images = attrs.delete(:images)
     attrs.delete(:remove_image_ids)
 
     if @catch.update(attrs)
-      if new_images.present?
-        new_images.each do |img|
-          @catch.images.attach(img)
-        end
+      Array(new_images).each do |img|
+        @catch.images.attach(img)
       end
 
       redirect_to @catch, notice: "釣果を更新しました！"
@@ -86,14 +83,5 @@ class CatchesController < ApplicationController
       { images: [] },
       { remove_image_ids: [] }
     )
-  end
-
-  def attach_new_images(catch)
-    imgs = catch_params[:images]
-    return if imgs.blank?
-
-    imgs.each do |img|
-      catch.images.attach(img)
-    end
   end
 end
